@@ -41,8 +41,10 @@ int main(int argc, char**argv) {
     if (argc>4) r = strtod(argv[4],NULL);    // set r from 4th arg, if present
     if (argc>5) up = strcmp(argv[5],"up") == 0;  // rotate 90-degrees if 5th arg is "up"
 
-    //emitpoly(x,y,n,r,up);
-    emitpolyweb(x,y,n,r,up);
+    if (strcmp(argv[0],"emitpoly") == 0)
+        emitpoly(x,y,n,r,up);
+    else
+        emitpolyweb(x,y,n,r,up);
     printf("showpage\n");
     return 0;
 }
