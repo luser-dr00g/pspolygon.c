@@ -1,3 +1,4 @@
+#include <libgen.h>
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -41,6 +42,12 @@ int main(int argc, char**argv) {
     if (argc>4) r = strtod(argv[4],NULL);    // set r from 4th arg, if present
     if (argc>5) up = strcmp(argv[5],"up") == 0;  // rotate 90-degrees if 5th arg is "up"
 
+    argv[0] = basename(argv[0]);
+    {
+        char *dot = strstr(argv[0],".exe");
+        if (dot) *dot = 0;
+    }
+    printf("%% %s\n", argv[0]);
     if (strcmp(argv[0],"emitpoly") == 0)
         emitpoly(x,y,n,r,up);
     else
